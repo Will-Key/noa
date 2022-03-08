@@ -1,0 +1,5 @@
+<div class="container">
+    <h2 id="title">Connexion</h2>
+    <mat-error *ngIf="message">{{ message }}</mat-error>
+    <app-login-form (submit)="onSubmit($event)" [status]="message"></app-login-form>
+</div>

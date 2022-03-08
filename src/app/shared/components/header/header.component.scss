@@ -1,0 +1,22 @@
+$primary: #3f51b5;
+$secondary: #333333;
+
+.content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    h2 {
+        color: $primary;
+        margin-bottom: 0px;
+        font-weight: 500;
+    }
+
+    h4 {
+        opacity: 0.8;
+    }
+
+    button {
+        margin-top: 0.5rem;
+    }
+}

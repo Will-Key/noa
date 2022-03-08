@@ -1,0 +1,46 @@
+<form id="form" [formGroup]="loginForm" #ngForm="ngForm">
+    <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Login</mat-label>
+        <input autocomplete="false" matInput name="login" id="login" formControlName="p_login">
+        <mat-error *ngIf="hasError('login', 'required')">
+            {{ errorMessages?.login?.required }}
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Mot de passe</mat-label>
+        <input 
+            autocomplete="false" 
+            matInput
+            [type]="hide ? 'password' : 'text'"
+            name="password"
+            id="password"
+            formControlName="p_mdp"
+        >
+        <button
+            mat-icon-button
+            matSuffix
+            (click)="hide = !hide"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide"
+            type="button"
+        >
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="hasError('password', 'required')">
+            {{ errorMessages?.password?.required }}
+        </mat-error>
+    </mat-form-field>
+    <button
+        id="btn-cnx"
+        (click)="pushData()"
+        type="button"
+        mat-raised-button
+        color="primary"
+        [disabled]="loginForm.invalid"
+    >
+        Se connecter
+    </button>
+    <div align="end">
+        <a id="init-reset-pwd" href="#">Mot de passe oublié</a>
+    </div>
+</form>

@@ -1,0 +1,15 @@
+.container {
+    max-width: 100%;
+    margin-left: 0px;
+    .row {
+        height: 100vh;
+        .img-div {
+            background: url('/assets/login/mue.jpg') no-repeat center;
+        }
+        .form-div {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+    }
+}
