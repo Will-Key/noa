@@ -5,12 +5,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './components/header/header.component';
 import { TableComponent } from './components/table/table.component';
 
-
+const componentToExport = [
+  HeaderComponent,
+  TableComponent
+]
 
 @NgModule({
   declarations: [
-    HeaderComponent,
-    TableComponent
+    ...componentToExport
   ],
   imports: [
     CommonModule,
@@ -23,7 +25,7 @@ import { TableComponent } from './components/table/table.component';
     MaterialModule,
     ReactiveFormsModule,
     FormsModule,
-    HeaderComponent
+    ...componentToExport
   ]
 })
 export class SharedModule { }
