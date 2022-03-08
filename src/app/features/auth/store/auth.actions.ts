@@ -17,3 +17,7 @@ export const LOGIN_FAILED = createAction(
     '[Auth] LOGIN FAILED',
     props<{ message: string }>()
 )
+
+export const CLEAR_MESSAGE = createAction(
+    '[Auth] CLEAR MESSAGE'
+)

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import * as AuthActions from '../../features/auth/store/auth.actions'
 
 @Component({
   selector: 'app-toolbar',
@@ -7,9 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ToolbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router, private store: Store) { }
 
   ngOnInit(): void {
+  }
+
+  onLogout() {
+    localStorage.clear()
+    this.router.navigate(['/auth/login'])
   }
 
 }

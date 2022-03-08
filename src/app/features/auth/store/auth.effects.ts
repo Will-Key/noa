@@ -14,7 +14,7 @@ export class AuthEffects {
     login$ = createEffect(() => 
         this.action$.pipe(
             ofType(AuthActions.LOGIN),
-            mergeMap(({body}) => this.authService.fakeLogin(body).pipe(
+            mergeMap(({body}) => this.authService.login(body).pipe(
                 map((response: AuthApiResponse) => {
                     setToken(response.contenu!)
                     return AuthActions.LOGIN_SUCCEEDED({ response })
@@ -31,6 +31,7 @@ export class AuthEffects {
         this.action$.pipe(
             ofType(AuthActions.LOGIN_SUCCEEDED),
             map(() => {
+                AuthActions.CLEAR_MESSAGE()
                 return this.router.navigate(['/'])
             }),
         ),

@@ -1,17 +1,19 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
+import { Subscription } from 'rxjs';
 import { hasError } from 'src/app/utils/error-helpers';
-import { selectMessage } from '../../store/auth.reducer';
+import { selectLoading, selectMessage } from '../../store/auth.reducer';
 
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.scss']
 })
-export class LoginFormComponent implements OnInit {
+export class LoginFormComponent implements OnInit, OnDestroy {
   @Input() status: string | null = null
   message: string | null = null
+  isLoading: boolean = false
   @Output() submit = new EventEmitter()
   hide: boolean = true
 
@@ -25,14 +27,22 @@ export class LoginFormComponent implements OnInit {
     password: { required: 'Le mot de passe est réquis'},
   }
 
+  subscription: Subscription = new Subscription()
+
   constructor(private formBuilder: FormBuilder, private store: Store) { }
 
   ngOnInit(): void {
-    this.store.select(selectMessage).subscribe(
+    this.subscription.add(this.store.select(selectMessage).subscribe(
       (message) => {
         this.message = message
       }
-    )
+    ))
+
+    this.subscription.add(this.store.select(selectLoading).subscribe(
+      (loading) => {
+        this.isLoading = loading
+      }
+    ))
   }
 
   pushData() {
@@ -44,6 +54,10 @@ export class LoginFormComponent implements OnInit {
 
   hasError(controlName: string, errorKey: string) {
     return hasError(this.loginForm, controlName, errorKey)
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe()
   }
 
 }

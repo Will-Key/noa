@@ -36,7 +36,7 @@
         type="button"
         mat-raised-button
         color="primary"
-        [disabled]="loginForm.invalid"
+        [disabled]="loginForm.invalid || isLoading"
     >
         Se connecter
     </button>

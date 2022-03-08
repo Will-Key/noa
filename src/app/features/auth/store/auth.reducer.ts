@@ -27,7 +27,7 @@ export const authFeature = createFeature({
         on(AuthActions.LOGIN_SUCCEEDED, (state, { response }) => ({
             ...state,
             user: response.contenu,
-            message: response.message,
+            message: null,
             loading: false
         })),
         on(AuthActions.LOGIN_FAILED, (state, {message}) => ({
@@ -35,6 +35,10 @@ export const authFeature = createFeature({
             user: null,
             message: message,
             loading: false
+        })),
+        on(AuthActions.CLEAR_MESSAGE, (state) => ({
+            ...state,
+            message: null
         }))
     )
 })
