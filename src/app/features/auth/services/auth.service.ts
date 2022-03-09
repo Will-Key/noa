@@ -40,7 +40,7 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   login(body: FinalParamConnexion) {
-    return this.http.post<AuthApiResponse>(`${this.apiUrl}/connexion/`, body)
+    return this.http.post<AuthApiResponse>(`${this.apiUrl}/connexion`, body)
   }
 
   fakeLogin(body: FinalParamConnexion): Observable<AuthApiResponse> {
