@@ -1,6 +1,6 @@
 {
     "/api": {
-      "target": "http://164.160.33.55:8094/api",
+      "target": "http://164.160.33.55:3610/api",
       "secure": false,
       "changeOrigin": true,
       "pathRewrite": {
