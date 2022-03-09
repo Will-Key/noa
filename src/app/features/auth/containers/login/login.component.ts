@@ -25,12 +25,10 @@ export class LoginComponent implements OnInit {
 
   onSubmit(body: ParamConnexion) {
     const pCnx = body
-    console.log(pCnx)
     const connexionData: FinalParamConnexion = {
       param_session: { session: '' },
       param_cnx: pCnx
     }
-    console.log(connexionData)
     this.store.dispatch(LOGIN({ body: connexionData }))
   }
 
