@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./principal-adherent.component.scss']
 })
 export class PrincipalAdherentComponent implements OnInit {
+  title: string = 'Adherent'
+  subTitle: string = 'Principal'
 
   constructor() { }
 

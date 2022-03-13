@@ -1,17 +1,11 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { AdherentComponent } from './adherent.component';
-import { SharedModule } from 'src/app/shared/shared.module';
 import { AdherentRoutingModule } from './adherent-routing.module';
-
+import { AdherentComponent } from './adherent.component';
 
 @NgModule({
-  declarations: [
-    AdherentComponent,
-  ],
+  declarations: [AdherentComponent],
   imports: [
-    CommonModule,
-    AdherentRoutingModule,
+    AdherentRoutingModule
   ],
 })
 export class AdherentModule { }

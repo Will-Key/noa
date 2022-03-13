@@ -1,0 +1,26 @@
+<li class="nav-item noselect">
+    <div>
+      <a
+        class="nav-label"
+        (click)="onToggle()"
+        *ngIf="!isDropdown || (isDropdown && subLinks.length)"
+        [class.active]="parentIsActive"
+      >
+        <mat-icon>{{ navIcon }}</mat-icon>
+        <span class="label">{{ navLabel }}</span>
+        <mat-icon class="d-icon" *ngIf="subLinks.length">{{
+          isOpen ? 'expand_less' : 'expand_more'
+        }}</mat-icon>
+      </a>
+      <ul class="nav-links" *ngIf="isOpen && subLinks.length">
+        <li
+          *ngFor="let link of subLinks; trackBy: trackBySubLinkLabel"
+          [routerLink]="link.path"
+          routerLinkActive="active"
+        >
+          {{ link.label }}
+        </li>
+      </ul>
+    </div>
+</li>
+  

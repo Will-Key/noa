@@ -7,6 +7,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { LayoutComponent } from 'src/app/layout/layout.component';
 import { SidenavComponent } from 'src/app/layout/sidenav/sidenav.component';
 import { ToolbarComponent } from 'src/app/layout/toolbar/toolbar.component';
+import { SidenavItemComponent } from 'src/app/layout/sidenav/sidenav-item/sidenav-item.component';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { ToolbarComponent } from 'src/app/layout/toolbar/toolbar.component';
     LayoutComponent,
     ToolbarComponent,
     SidenavComponent,
+    SidenavItemComponent,
     HomeComponent
   ],
   imports: [

@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./layout.component.scss']
 })
 export class LayoutComponent implements OnInit {
-
+  opened: boolean = true
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onToggle(isOpened: boolean) {
+    this.opened = isOpened
   }
 
 }

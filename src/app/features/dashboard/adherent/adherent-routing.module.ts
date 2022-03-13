@@ -7,9 +7,9 @@ const routes: Routes = [
     path: '', 
     component: AdherentComponent, 
     children: [
-      { path: '', pathMatch: 'full', redirectTo: 'principal-adherent' },
+      { path: '', pathMatch: 'full', redirectTo: 'principal' },
       {
-        path: 'principal-adherent',
+        path: 'principal',
         loadChildren: () => 
           import('./principal-adherent/principal-adherent.module').then(
             (m) => m.PrincipalAdherentModule

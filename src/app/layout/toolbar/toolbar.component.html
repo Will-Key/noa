@@ -1,14 +1,15 @@
-<mat-toolbar color="primary" class="mat-elevation-z2">
-    <span>logotype</span>
-    <button
-      mat-icon-button
-      type="button"
-    >
-      <mat-icon>menu</mat-icon>
-    </button>
-    <span class="example-spacer"></span>
-    <button (click)="onLogout()" type="button" mat-button>
-      <mat-icon>power_settings_new</mat-icon> Deconnexion
-    </button>
-  </mat-toolbar>
+<mat-toolbar color="primary" class="example-toolbar mat-elevation-z2">
+  <button
+    mat-icon-button
+    type="button"
+    (click)="onToggle()"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span id="logo">NOA</span>
+  <span class="example-spacer"></span>
+  <button class="logout" (click)="onLogout()" type="button" mat-button>
+    <mat-icon>power_settings_new</mat-icon> Deconnexion
+  </button>
+</mat-toolbar>
   
