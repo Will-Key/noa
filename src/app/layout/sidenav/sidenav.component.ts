@@ -39,7 +39,7 @@ export class SidenavComponent implements OnInit, OnDestroy {
 
   private dashboardNavItem = {
     navLabel: 'Tableau de bord',
-    navIcon: 'dashboard',
+    navIcon: 'analytics',
     baseUrl: '/dashboard',
     subLinks: [],
     isDropdown: false,
@@ -110,7 +110,7 @@ export class SidenavComponent implements OnInit, OnDestroy {
   private getAdherentNavItem(adherentSubLinks: SubLink[]): SidenavItem {
     return {
       navLabel: 'Adherent',
-      navIcon: 'man',
+      navIcon: 'groups',
       baseUrl: '/dashboard/adherent',
       isDropdown: true,
       subLinks: adherentSubLinks,
