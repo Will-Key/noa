@@ -7,22 +7,35 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { PrincipalAdherentComponent } from './containers/principal-adherent/principal-adherent.component';
 import { PrincipalAdherentFormComponent } from './components/principal-adherent-form/principal-adherent-form.component';
 import { PrincipalAdherentListingComponent } from './components/principal-adherent-listing/principal-adherent-listing.component';
+import { ListingComponent } from './containers/listing/listing.component';
+import { FormComponent } from './containers/form/form.component';
 
 const routes: Routes = [
-  { path: '', component: PrincipalAdherentComponent, pathMatch: 'full'}
-]
+  {
+    path: '',
+    component: PrincipalAdherentComponent,
+    children: [
+      { path: '', redirectTo: 'list', pathMatch: 'full' },
+      { path: 'list', component: ListingComponent },
+      { path: 'form', component: FormComponent },
+    ],
+  },
+];
 
 @NgModule({
   declarations: [
     PrincipalAdherentComponent,
     PrincipalAdherentFormComponent,
-    PrincipalAdherentListingComponent
+    PrincipalAdherentListingComponent,
+    ListingComponent,
+    FormComponent,
   ],
   imports: [
     SharedModule,
     RouterModule.forChild(routes),
     StoreModule.forFeature(principalAdherentReducer),
-    EffectsModule.forFeature([])
-  ]
+    EffectsModule.forFeature([]),
+  ],
+  exports: [RouterModule],
 })
-export class PrincipalAdherentModule { }
+export class PrincipalAdherentModule {}

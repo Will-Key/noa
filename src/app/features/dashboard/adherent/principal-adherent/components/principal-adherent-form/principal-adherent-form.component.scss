@@ -1,0 +1,66 @@
+.container-fluid {
+  margin-top: 1rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+
+  div {
+    margin-bottom: 1rem;
+  }
+
+  .my-fieldset {
+    border: 2px solid black;
+    border-radius: 5px;
+    margin-right: 2rem;
+    padding: 1rem;
+
+    hr {
+      margin-top: 0px;
+    }
+
+    h2 {
+      margin-bottom: 0px;
+    }
+
+    div {
+      margin-bottom: 0rem;
+    }
+
+    .product {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+    }
+
+    .sex {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      .mat-radio-group {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+      }
+    }
+  }
+
+  .actions {
+    margin-top: 2rem;
+    margin-right: 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+
+    button {
+      margin-left: 1rem;
+    }
+
+    .update-btn {
+      background-color: greenyellow;
+    }
+  }
+}
+
+mat-form-field {
+  width: 100%;
+}

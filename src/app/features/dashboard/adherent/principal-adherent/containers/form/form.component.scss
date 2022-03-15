@@ -1,0 +1,15 @@
+.container-fluid {
+  margin-top: 1rem;
+
+  div {
+  margin-bottom: 1rem;
+}
+
+  mat-card {
+    border-radius: 10px;
+
+    mat-card-title {
+      text-transform: uppercase;
+    }
+  }
+}
