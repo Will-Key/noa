@@ -6,7 +6,7 @@
         *ngIf="!isDropdown || (isDropdown && subLinks.length)"
         [class.active]="parentIsActive"
       >
-        <mat-icon>{{ navIcon }}</mat-icon>
+        <mat-icon class="l-icon">{{ navIcon }}</mat-icon>
         <span class="label">{{ navLabel }}</span>
         <mat-icon class="d-icon" *ngIf="subLinks.length">{{
           isOpen ? 'expand_less' : 'expand_more'

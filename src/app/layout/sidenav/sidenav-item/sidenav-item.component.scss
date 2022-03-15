@@ -15,6 +15,9 @@ $secondary: #3f51b5;
     padding-left: 20px;
     text-decoration: none;
     color: inherit;
+    .l-icon {
+      margin-right: 5px;
+    }
     .d-icon {
       flex: none;
       position: absolute;
@@ -30,7 +33,7 @@ $secondary: #3f51b5;
 
   div .nav-links {
     border-left: 3px solid $primary;
-    margin-left: 40px;
+    margin-left: 35px;
     li {
       cursor: pointer;
       margin-bottom: 5px;
