@@ -15,7 +15,7 @@ const componentToExport = [
 @NgModule({
   declarations: [
     ...componentToExport,
-    StatsCardComponent
+    StatsCardComponent,
   ],
   imports: [
     CommonModule,
