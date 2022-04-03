@@ -1,0 +1,23 @@
+.my-dynamic-table {
+    width: 100%;
+  
+    .mat-header-row {
+      background: #e2edf5;
+      height: 45px;
+      
+      .mat-header-cell {
+        color: var(--primary-color);
+        font-weight: bold;
+      }
+    }
+  
+    .mat-row {
+      .mat-cell {
+        color: gray;
+      }
+    }
+
+    button {
+      margin-right: 0.5rem;
+    }
+  }

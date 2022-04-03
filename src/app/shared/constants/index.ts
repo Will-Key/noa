@@ -1,0 +1,3 @@
+export const LOCAL_STORAGE_USER_TOKEN_KEY = '@noa/userToken'
+export const SNACKBAR_SUCCESS_TIMEOUT = 5000
+export const SNACKBAR_ERROR_TIMEOUT = 10000

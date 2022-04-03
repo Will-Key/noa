@@ -9,6 +9,7 @@ import { PrincipalAdherentFormComponent } from './components/principal-adherent-
 import { PrincipalAdherentListingComponent } from './components/principal-adherent-listing/principal-adherent-listing.component';
 import { ListingComponent } from './containers/listing/listing.component';
 import { FormComponent } from './containers/form/form.component';
+import { PrincipalAdherentEffects } from './store/principal-adherent.effects';
 
 const routes: Routes = [
   {
@@ -34,7 +35,7 @@ const routes: Routes = [
     SharedModule,
     RouterModule.forChild(routes),
     StoreModule.forFeature(principalAdherentReducer),
-    EffectsModule.forFeature([]),
+    EffectsModule.forFeature([PrincipalAdherentEffects]),
   ],
   exports: [RouterModule],
 })

@@ -24,13 +24,13 @@ export class AuthService {
   }
   fakeUserMdp: string = "12345"
 
-  fakeApiResponseInSuccessCase: AuthApiResponse = {
+  fakeAuthApiResponseInSuccessCase: AuthApiResponse = {
     statut: "200",
     contenu: this.fakeUser,
     message: "Connexion succeeded"
   }
 
-  fakeApiResponseInFailedCase: AuthApiResponse = {
+  fakeAuthApiResponseInFailedCase: AuthApiResponse = {
     statut: "400",
     contenu: null,
     message: "Connexion failed"
@@ -56,9 +56,9 @@ export class AuthService {
     if (body.param_cnx.p_login === this.fakeUser.r_login &&
         body.param_cnx.p_mdp === this.fakeUserMdp
       ) {
-        return of(this.fakeApiResponseInSuccessCase)
+        return of(this.fakeAuthApiResponseInSuccessCase)
       }
-    return of(this.fakeApiResponseInFailedCase)
+    return of(this.fakeAuthApiResponseInFailedCase)
   }
 
   private handleUser(login: string): Observable<User | null> {

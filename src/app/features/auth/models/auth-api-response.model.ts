@@ -1,7 +1,6 @@
+import { ApiResponse } from 'src/app/shared/models/api-response.model'
 import { User } from '../models'
 
-export interface AuthApiResponse {
-    statut: string
+export interface AuthApiResponse extends ApiResponse {
     contenu: User | null
-    message: string
 }

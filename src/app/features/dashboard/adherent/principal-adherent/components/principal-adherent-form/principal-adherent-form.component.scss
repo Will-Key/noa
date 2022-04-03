@@ -29,10 +29,13 @@
       display: flex;
       flex-direction: row;
       justify-content: space-around;
-      .product-element {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
+      .row {
+        width: 100%;
+        .product-element {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-around;
+        }
       }
     }
 
@@ -46,6 +49,31 @@
         display: flex;
         justify-content: space-around;
       }
+    }
+
+    .upload-area {
+      border: 1px solid #7e7b7b;
+      border-radius: 4px;
+      margin-top: 0.35rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+
+      img {
+        max-width: 100px;
+        max-height: 100px;
+      }
+
+      .upload-btn {
+        width: 100%;
+
+        button {
+          width: 100%;
+        }
+      } 
     }
   }
 

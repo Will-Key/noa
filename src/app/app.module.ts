@@ -11,6 +11,7 @@ import { SharedModule } from './shared/shared.module';
 import { RequestsInterceptor } from './shared/interceptors/requests.interceptor';
 import { AppEffects } from './store/app.effects';
 import { reducer } from './store/app.reducer';
+import { AlertModule } from './features/alert/alert.module';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { reducer } from './store/app.reducer';
     HttpClientModule,
     AppRoutingModule,
     SharedModule,
+    AlertModule,
     BrowserAnimationsModule,
     StoreModule.forRoot(reducer),
     EffectsModule.forRoot([])

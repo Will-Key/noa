@@ -38,7 +38,8 @@ export const authFeature = createFeature({
         })),
         on(AuthActions.CLEAR_MESSAGE, (state) => ({
             ...state,
-            message: null
+            message: null,
+            loading: false
         }))
     )
 })

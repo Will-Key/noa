@@ -11,6 +11,10 @@ import { MatListModule } from '@angular/material/list';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatDialogModule } from '@angular/material/dialog';
 
 const matModules = [
   MatIconModule,
@@ -25,6 +29,10 @@ const matModules = [
   MatRadioModule,
   MatCheckboxModule,
   MatDatepickerModule,
+  MatPaginatorModule,
+  MatTableModule,
+  MatProgressSpinnerModule,
+  MatDialogModule
 ];
 
 @NgModule({

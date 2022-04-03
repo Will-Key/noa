@@ -1,0 +1,14 @@
+<h3 mat-dialog-title id="title">{{ data.title }}</h3>
+
+<div mat-dialog-content id="content">
+  {{ data.message }}
+  <br />
+  La suppression sera irréversible.
+</div>
+
+<mat-dialog-actions align="end" id="actions">
+  <button mat-button [mat-dialog-close]="false">ANNULER</button>
+  <button mat-raised-button [mat-dialog-close]="true" color="warn">
+    SUPPRIMER
+  </button>
+</mat-dialog-actions>

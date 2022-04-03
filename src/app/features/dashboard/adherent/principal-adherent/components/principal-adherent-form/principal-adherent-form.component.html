@@ -9,7 +9,7 @@
           <mat-form-field appearance="outline">
             <mat-label>Sélectionnez un délégué</mat-label>
             <mat-select (selectionChange)="onSelectAgent($event)" formControlName="r_agent">
-              <mat-option [value]="agent.value" *ngFor="let agent of agentList">{{agent.name}}</mat-option>
+              <mat-option [value]="agent.r_i" *ngFor="let agent of agentList">[{{agent.r_numero}}] {{agent.r_nom}} {{agent.r_prenoms}}</mat-option>
             </mat-select>
             <mat-error *ngIf="hasError('r_agent', 'required')">
               {{ errorMessages?.manager?.required }}
@@ -28,17 +28,19 @@
       <h2>Produit
       </h2>
       <hr>
-      <div class="product">
+      <div class="product d-flex justify-content-around">
         <div class="row" [formGroup]="product">
-          <div class="col-md-12 product-element">
-            <mat-checkbox class="example-margin" formControlName="death">Décès</mat-checkbox>
-            <mat-checkbox class="example-margin" formControlName="surgery">Churigie</mat-checkbox>
+          <div class="col-md-6 product-element">
+            <mat-checkbox class="example-margin" (click)="onChoiseProduct()" formControlName="death">Décès</mat-checkbox>
           </div>
-          <!-- <div class="col-md-12 product-element" *ngIf="!product.value.death && !product.value.surgery">
+          <div class="col-md-6 product-element">
+            <mat-checkbox class="example-margin" (click)="onChoiseProduct()" formControlName="surgery">Churigie</mat-checkbox>
+          </div>
+          <div class="col-md-12 product-element" *ngIf="productError">
             <mat-error>
               Vous devez sélectionner un produit
             </mat-error>
-          </div> -->
+          </div>
         </div>
       </div>
     </div>
@@ -80,8 +82,7 @@
           <div class="row">
             <div class="col-md-12">
               <mat-radio-group aria-label="Sexe" formControlName="r_sexe">
-                <mat-radio-button value="1">Féminin</mat-radio-button>
-                <mat-radio-button value="2">Masculin</mat-radio-button>
+                <mat-radio-button [value]="sex.r_i" *ngFor="let sex of sexes">{{ sex.r_libelle }}</mat-radio-button>
               </mat-radio-group>
             </div>
             <div class="col-md-12">
@@ -101,9 +102,6 @@
             <mat-error *ngIf="hasError('r_telephone', 'required')">
               {{ errorMessages?.phone?.required }}
             </mat-error>
-            <mat-error *ngIf="hasError('r_telephone', 'minLength')">
-              {{ errorMessages?.phone?.minLength }}
-            </mat-error>
             <mat-error *ngIf="hasError('r_telephone', 'pattern')">
               {{ errorMessages?.phone?.pattern }}
             </mat-error>
@@ -117,6 +115,9 @@
             <mat-error *ngIf="hasError('r_telephone_wha', 'required')">
               {{ errorMessages?.phone?.required }}
             </mat-error>
+            <mat-error *ngIf="hasError('r_telephone_wha', 'pattern')">
+              {{ errorMessages?.phone?.pattern }}
+            </mat-error>
           </mat-form-field>
         </div>
       </div>
@@ -128,12 +129,14 @@
             <mat-error *ngIf="hasError('r_email', 'required')">
               {{ errorMessages?.email?.required }}
             </mat-error>
+            <mat-error *ngIf="hasError('r_email', 'email')">
+              {{ errorMessages?.email?.email }}
+            </mat-error>
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>Type de pièce</mat-label>
             <mat-select name="typepiece" formControlName="r_type_piece">
-              <mat-option value="1">CNI</mat-option>
-              <mat-option value="2">Attestation d'identité</mat-option>
+              <mat-option [value]="piece.r_i" *ngFor="let piece of pieceType">{{ piece.r_libelle }}</mat-option>
             </mat-select>
             <mat-error *ngIf="hasError('r_type_piece', 'required')">
               {{ errorMessages?.typepiece?.required }}
@@ -147,11 +150,25 @@
             </mat-error>
           </mat-form-field>
         </div>
-        <div class="col-md-6 col-xs-12 sex">
-          <mat-form-field appearance="outline">
-            <mat-label>Téléphone whatsapp</mat-label>
-            <input matInput type="tel" name="telwha">
-          </mat-form-field>
+        <!-- <div class="col-md-5 col-xs-12">
+          <div class="col-md-6 product-element"  *ngFor="let product of products; let i = index">
+            <mat-checkbox class="example-margin" (click)="onChoiseProduct()" [value]="product.r_code" formControlName="r_produit">{{ product.r_designation }}</mat-checkbox>
+          </div>
+        </div> -->
+        <div class="col-md-6 col-xs-12 upload-area">
+            <div class="card-panel teal lighten-2">
+              <h4 class="white-text">Choisissez une photo</h4>
+            </div>
+            <img [src]="photoUrl" alt="photo">
+            <div class="upload-btn">
+              <input style="display: none;" (change)="handleFileInput($event.target)" type="file" name="photo" #fileInput accept="image/*">
+              <button 
+                mat-raised-button
+                color="primary"
+                type="button"
+                (click)="fileInput.click()"
+              >Sélectionnez</button>
+            </div>
         </div>
       </div>
     </div>
@@ -161,14 +178,19 @@
       <!-- <button *ngIf="!editMode" mat-stroked-button color="primary" class="submit-and-quit-btn" type="submit">
         Valider et Quitter
       </button> -->
-      <button *ngIf="editMode" mat-raised-button class="update-btn" type="submit">
+      <button 
+        *ngIf="editMode" 
+        mat-raised-button 
+        class="update-btn" 
+        [disabled]="form.invalid || loading" 
+        type="submit"
+      >
         Mettre à jour
       </button>
       <button 
         *ngIf="!editMode" 
-        disabled="form.invalid && (product.value.death || product.value.surgery)" 
+        [disabled]="form.invalid || loading" 
         mat-raised-button 
-        id="test-submit-btn" 
         color="primary"
         type="submit"
       >

@@ -14,14 +14,14 @@ export const errorMessages = {
         required: "Veuillez renseigner le ou les prenoms"
     },
     birthdate: {
-        required: "Veuillez renseigner le ou les prenoms"
+        required: "Veuillez renseigner une date de naissance valide"
     },
     sex: {
         required: "Veuillez cocher le sexe"
     },
     phone: {
         required: "Veuillez renseigner le numéro de téléphone",
-        minLength: "Numéro de téléphone invalide",
+        minLength: "Dix chiffres minimum",
         pattern: "Numéro de téléphone invalide",
     },
     adress: {

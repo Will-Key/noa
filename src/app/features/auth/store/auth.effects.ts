@@ -14,13 +14,12 @@ export class AuthEffects {
     login$ = createEffect(() => 
         this.action$.pipe(
             ofType(AuthActions.LOGIN),
-            mergeMap(({body}) => this.authService.login(body).pipe(
+            mergeMap(({body}) => this.authService.fakeLogin(body).pipe(
                 map((response: AuthApiResponse) => {
                     setToken(response.contenu!)
                     return AuthActions.LOGIN_SUCCEEDED({ response })
                 }),
                 catchError((err: AuthApiResponse) => {
-                    console.log(err)
                     return of(AuthActions.LOGIN_FAILED({ message: err.message }))
                 })
             ))
