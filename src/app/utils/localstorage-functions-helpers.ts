@@ -7,6 +7,8 @@ export function setToken(userInfos: User) {
 }
 
 export function getToken() {
+    console.log(localStorage.getItem(LOCAL_STORAGE_USER_TOKEN_KEY))
     const tokenStoreString = localStorage.getItem(LOCAL_STORAGE_USER_TOKEN_KEY)
+    console.log(tokenStoreString)
     return tokenStoreString ? JSON.parse(tokenStoreString) : null
 }

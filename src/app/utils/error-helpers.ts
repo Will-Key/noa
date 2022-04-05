@@ -3,6 +3,7 @@ import { Store } from "@ngrx/store";
 import { of } from "rxjs";
 import { SET_ALERT } from "../features/alert/store/alert.actions";
 import { SNACKBAR_ERROR_TIMEOUT, SNACKBAR_SUCCESS_TIMEOUT } from "../shared/constants";
+import { ApiResponse } from "../shared/models";
 
 export function hasError(
     form: FormGroup,
@@ -43,6 +44,26 @@ export function effectSuccessHandler(store: Store, message: string) {
         },
         }),
     )
+}
+
+export function manageResponse(response: ApiResponse) {
+    if (response.r_statut != '200') {
+        return SET_ALERT({
+            alert: {
+              type: 'error',
+              message: response.r_message,
+              timeout: SNACKBAR_ERROR_TIMEOUT,
+            },
+        })
+    }
+    return SET_ALERT({
+        alert: {
+          type: 'success',
+          message: response.r_message,
+          timeout: SNACKBAR_SUCCESS_TIMEOUT,
+        },
+    })
+
 }
 
 

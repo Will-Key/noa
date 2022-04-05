@@ -6,7 +6,6 @@ import { principalAdherentReducer } from './store/principal-adherent.reducers';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { PrincipalAdherentComponent } from './containers/principal-adherent/principal-adherent.component';
 import { PrincipalAdherentFormComponent } from './components/principal-adherent-form/principal-adherent-form.component';
-import { PrincipalAdherentListingComponent } from './components/principal-adherent-listing/principal-adherent-listing.component';
 import { ListingComponent } from './containers/listing/listing.component';
 import { FormComponent } from './containers/form/form.component';
 import { PrincipalAdherentEffects } from './store/principal-adherent.effects';
@@ -27,7 +26,6 @@ const routes: Routes = [
   declarations: [
     PrincipalAdherentComponent,
     PrincipalAdherentFormComponent,
-    PrincipalAdherentListingComponent,
     ListingComponent,
     FormComponent,
   ],

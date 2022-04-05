@@ -5,4 +5,5 @@ export interface AdherentSubscription extends Adherent {
     r_i?: number
     r_agent: Agent[]
     r_produit: Product[]
+    r_adherent_secondaire: Adherent[]
 }

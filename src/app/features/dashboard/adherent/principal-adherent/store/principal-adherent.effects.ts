@@ -8,7 +8,7 @@ import { SNACKBAR_ERROR_TIMEOUT, SNACKBAR_SUCCESS_TIMEOUT } from "src/app/shared
 import { FetchResponse } from "src/app/shared/models";
 import { ApiResponse } from "src/app/shared/models/api-response.model";
 import { ListService } from "src/app/shared/services/list.service";
-import { effectErrorHandler, effectSuccessHandler } from "src/app/utils";
+import { effectErrorHandler, effectSuccessHandler, manageResponse } from "src/app/utils";
 import { PrincipalAdherentApiResponse } from "../../models/adherent-api-response.model";
 import { PrincipalAdherentService } from "../service/principal-adherent.service";
 import * as PrincipalAdherentActions from "./principal-adherent.actions"
@@ -37,10 +37,10 @@ export class PrincipalAdherentEffects {
         this.actions$.pipe(
             ofType(PrincipalAdherentActions.TRY_CREATE_ADHERENT),
             mergeMap(({ payload }) => this.principalAdherentService.create(payload).pipe(
-                tap((response) => effectSuccessHandler(this.store, response.message)),
+                tap((response) => effectSuccessHandler(this.store, response.r_message)),
                 map((response: ApiResponse) => {
-                    console.log(response)
-                    this.manageResponse(response)
+                    manageResponse(response)
+
                     return PrincipalAdherentActions.ADHERENT_CREATION_SUCCEEDED({ response })
                 }),
                 catchError((error) => {
@@ -55,10 +55,9 @@ export class PrincipalAdherentEffects {
         this.actions$.pipe(
             ofType(PrincipalAdherentActions.TRY_DELETE_ADHERENT),
             mergeMap(({ payload }) => this.principalAdherentService.create(payload).pipe(
-                tap((response) => effectSuccessHandler(this.store, response.message)),
+                tap((response) => effectSuccessHandler(this.store, response.r_message)),
                 map((response: ApiResponse) => {
-                    console.log(response)
-                    this.manageResponse(response)
+                    manageResponse(response)
                     PrincipalAdherentActions.TRY_FETCH_ADHERENT({ request: { p_code: 'REQ007', p_arguments: '' } })
                     return PrincipalAdherentActions.ADHERENT_CREATION_SUCCEEDED({ response })
                 }),
@@ -69,26 +68,6 @@ export class PrincipalAdherentEffects {
             ))
         )
     )
-
-    private manageResponse(response: ApiResponse) {
-        if (response.statut != '200') {
-            return SET_ALERT({
-                alert: {
-                  type: 'error',
-                  message: response.message,
-                  timeout: SNACKBAR_ERROR_TIMEOUT,
-                },
-            })
-        }
-        return SET_ALERT({
-            alert: {
-              type: 'success',
-              message: response.message,
-              timeout: SNACKBAR_SUCCESS_TIMEOUT,
-            },
-        })
-
-    }
 
     constructor(
         private actions$: Actions, 

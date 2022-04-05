@@ -27,7 +27,7 @@ export class AuthService {
   fakeAuthApiResponseInSuccessCase: AuthApiResponse = {
     statut: "200",
     contenu: this.fakeUser,
-    message: "Connexion succeeded"
+    message: "Connexion succeeded",
   }
 
   fakeAuthApiResponseInFailedCase: AuthApiResponse = {

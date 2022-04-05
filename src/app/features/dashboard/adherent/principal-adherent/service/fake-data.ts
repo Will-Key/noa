@@ -33,7 +33,8 @@ export const BASE_PRINCIPAL_ADHERENT: AdherentSubscription[] = [
                 r_designation: 'Décès',
                 r_statut: 1
             }
-        ]
+        ],
+        r_adherent_secondaire: []
     },
     {
         r_numero: '0002',
@@ -75,6 +76,7 @@ export const BASE_PRINCIPAL_ADHERENT: AdherentSubscription[] = [
                 r_designation: 'Churigie',
                 r_statut: 1
             }
-        ]
+        ],
+        r_adherent_secondaire: []
     },
 ]
