@@ -20,6 +20,14 @@ const routes: Routes = [
                         m => m.AdherentModule
                     )
                 
+            },
+            { 
+                path: 'recovery', 
+                loadChildren: () => 
+                    import('./recovery/recovery.module').then(
+                        m => m.RecoveryModule
+                    )
+                
             }
         ]
     }

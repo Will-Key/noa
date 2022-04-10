@@ -26,6 +26,19 @@ export const adherentLinks: SubLink[] = [
   },
 ]
 
+export const recoveryLinks: SubLink[] = [
+  {
+    module: 'RECOVERY',
+    path: '/dashboard/recovery/disaster',
+    label: 'Sinistre',
+  },
+  {
+    module: 'RECOVERY',
+    path: '/dashboard/recovery/contribution',
+    label: 'Cotisation',
+  },
+]
+
 // All modules
 //   'PROFILE',
 //   'SERVICE',

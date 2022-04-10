@@ -15,6 +15,13 @@ const routes: Routes = [
             (m) => m.PrincipalAdherentModule
           )
       },
+      {
+        path: 'secondary',
+        loadChildren: () => 
+          import('./secondary-adherent/secondary-adherent.module').then(
+            (m) => m.SecondaryAdherentModule
+          )
+      },
     ]
   }
 ]

@@ -21,7 +21,7 @@ import { Store } from '@ngrx/store';
 import { Subscription, filter } from 'rxjs';
 import { SidenavItem } from '../models/sidenav-item.model';
 import { SubLink } from '../models/sublink.model';
-import { generalSettingLinks, adherentLinks } from './links'
+import { generalSettingLinks, adherentLinks, recoveryLinks } from './links'
 
 /** @title Responsive sidenav */
 @Component({
@@ -36,6 +36,7 @@ export class SidenavComponent implements OnInit, OnDestroy {
   sidenavItems: SidenavItem[] = []
   private generalSettingSubLinks: SubLink[] = generalSettingLinks
   private adherentSubLinks: SubLink[] = adherentLinks
+  private recoverySubLinks: SubLink[] = recoveryLinks
 
   private dashboardNavItem = {
     navLabel: 'Tableau de bord',
@@ -84,6 +85,11 @@ export class SidenavComponent implements OnInit, OnDestroy {
         this.getAdherentNavItem(this.adherentSubLinks)
     }
 
+    if (this.recoverySubLinks.length) {
+      sidenavItems[sidenavItems.length] =
+        this.getRecoveryNavItem(this.recoverySubLinks)
+    }
+
     return sidenavItems
   }
 
@@ -114,6 +120,16 @@ export class SidenavComponent implements OnInit, OnDestroy {
       baseUrl: '/dashboard/adherent',
       isDropdown: true,
       subLinks: adherentSubLinks,
+    }
+  }
+
+  private getRecoveryNavItem(recoverySubLinks: SubLink[]): SidenavItem {
+    return {
+      navLabel: 'Recouvrement',
+      navIcon: 'payments',
+      baseUrl: '/dashboard/recovery',
+      isDropdown: true,
+      subLinks: recoverySubLinks,
     }
   }
 

@@ -8,7 +8,7 @@ import { selectAlert } from 'src/app/features/alert/store/alert.reducer';
 import { ListService } from 'src/app/shared/services/list.service';
 import { hasError } from '../../../../../../utils';
 import { errorMessages } from '../../../../../../utils/error-message';
-import { Adherent, AdherentSubscription, Product, Agent, pieceType } from '../../../models';
+import { Adherent, AdherentSubscription, Product, Agent, ParameterType } from '../../../models';
 import * as PrincipalAdherentActions from '../../store/principal-adherent.actions'
 import { selectLoading, selectPrincipalAdherentSelected } from '../../store/principal-adherent.reducers';
 
@@ -21,11 +21,12 @@ export class PrincipalAdherentFormComponent implements OnInit, AfterViewInit, On
   @ViewChild('agent') agent: ElementRef;
   @ViewChild('myForm', { static: false }) myForm: NgForm | null = null
   @Output() submit = new EventEmitter<AdherentSubscription>()
+  @Output() isOnEditMode = new EventEmitter<boolean>()
   photoUrl: string = "/assets/upload/upload.png"
   fileToUpload: File | null = null
   agentList: Agent[] = []
-  pieceType: pieceType[]
-  sexes: pieceType[]
+  pieceType: ParameterType[]
+  sexes: ParameterType[]
   products: Product[]
   adherent: Adherent | null = null
   adherentSubs: AdherentSubscription | null = null
@@ -55,33 +56,33 @@ export class PrincipalAdherentFormComponent implements OnInit, AfterViewInit, On
 
     this.subscription.add(
       this.listService.fetch({ p_code: 'REQ003', p_arguments: ''}).subscribe((response) => {
-        this.agentList = response.r_contenu
+        this.agentList = response.contenu
       })
     )
 
     this.subscription.add(
       this.listService.fetch({ p_code: 'REQ001', p_arguments: ''}).subscribe((response) => {
-        console.log(response.r_contenu)
-        this.products = response.r_contenu
+        console.log(response.contenu)
+        this.products = response.contenu
       })
     )
 
     this.subscription.add(
       this.listService.fetch({ p_code: 'REQ008', p_arguments: "where tp.r_code='TPP'"}).subscribe((response) => {
-        this.pieceType = response.r_contenu
+        this.pieceType = response.contenu
       })
     )
 
     this.subscription.add(
       this.listService.fetch({ p_code: 'REQ008', p_arguments: "where tp.r_code='SEX'"}).subscribe((response) => {
-        this.sexes = response.r_contenu
+        this.sexes = response.contenu
       })
     )
 
     this.subscription.add(
       this.store.select(selectPrincipalAdherentSelected).subscribe((adherentSelected) => {
-        console.log(adherentSelected)
         this.editMode = !!adherentSelected
+        if (this.editMode) this.isOnEditMode.emit(true)
         this.adherentSubs = adherentSelected
         this.initForm()
         this.setValueOfFormInEditMode()

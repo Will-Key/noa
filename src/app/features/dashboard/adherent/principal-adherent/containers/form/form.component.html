@@ -7,11 +7,11 @@
   <div>
     <mat-card>
       <mat-card-header>
-        <mat-card-title>Ajout d'un nouvel adherent</mat-card-title>
+        <mat-card-title>{{ isEditMode ? 'Modification' : 'Ajout' }} d'un adherent</mat-card-title>
       </mat-card-header>
       <mat-divider></mat-divider>
       <mat-card-content>
-        <app-principal-adherent-form (submit)="$event"></app-principal-adherent-form>
+        <app-principal-adherent-form (isOnEditMode)="onEditMode($event)" (submit)="$event"></app-principal-adherent-form>
       </mat-card-content>
     </mat-card>
     <div style="margin-top: 5rem;"></div>

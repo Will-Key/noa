@@ -26,12 +26,12 @@ export const principalAdherentReducer = createFeature({
         })),
         on(PrincipalAdherentActions.ADHERENT_CREATION_SUCCEEDED, (state, { response }) => ({
             ...state,
-            message: response.r_message,
+            message: response.message,
             loading: false
         })),
         on(PrincipalAdherentActions.ADHERENT_CREATION_FAILED, (state, { response }) => ({
             ...state,
-            message: response.r_message,
+            message: response.message,
             loading: false
         })),
         on(PrincipalAdherentActions.TRY_FETCH_ADHERENT, (state) => ({
@@ -40,9 +40,9 @@ export const principalAdherentReducer = createFeature({
         })),
         on(PrincipalAdherentActions.ADHERENT_FETCHED, (state, { response }) => ({
             ...state,
-            message: response.r_message,
+            message: response.message,
             loading: false,
-            principalAdherentList: response.r_contenu as AdherentSubscription []
+            principalAdherentList: response.contenu as AdherentSubscription []
         })),
         on(PrincipalAdherentActions.SET_ADHERENT, (state, { adherent }) => ({
             ...state,

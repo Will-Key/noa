@@ -1,1 +1,20 @@
-<p>secondary-adherent-form works!</p>
+<div class="container-fluid">
+    <div>
+      <button mat-raised-button class="back" type="button" (click)="onGoBack()">
+        <mat-icon>arrow_back</mat-icon> Retour
+      </button>
+    </div>
+    <div>
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>{{ isEditMode ? 'Modification' : 'Ajout' }} d'un ayant droit</mat-card-title>
+        </mat-card-header>
+        <mat-divider></mat-divider>
+        <mat-card-content>
+            <app-secondary-adherent-form (onSubmit)="onSubmit($event)"></app-secondary-adherent-form>
+        </mat-card-content>
+      </mat-card>
+      <div style="margin-top: 5rem;"></div>
+    </div>
+  </div>
+  

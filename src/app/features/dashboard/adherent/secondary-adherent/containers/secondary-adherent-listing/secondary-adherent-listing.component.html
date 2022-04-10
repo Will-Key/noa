@@ -1,1 +1,16 @@
-<p>secondary-adherent-listing works!</p>
+<app-header [title]="title" [subTitle]="subTitle" [withButton]="adherentIsSelected" [btnLabel]="'Ajouter adherent sécondaire'" (onclick)="openForm()">
+</app-header>
+<div class="container-fluid">
+    <mat-card class="table-card">
+        <mat-form-field appearance="outline">
+            <mat-label>Adherent principal</mat-label>
+            <mat-select (selectionChange)="onSelectAdherent($event)">
+                <mat-option value="0">-- Sélectionnez --</mat-option>
+                <mat-option [value]="adherent" *ngFor="let adherent of adherentList">{{ adherent.r_nom }} {{ adherent.r_prenoms }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        <app-table [isLoading]="loading" [items]="entitledPersonList" [schema]="tableSchema" (actionClicked)="tableAction($event)">
+        </app-table>
+    </mat-card>
+</div>
+

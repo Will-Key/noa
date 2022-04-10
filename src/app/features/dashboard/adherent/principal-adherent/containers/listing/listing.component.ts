@@ -57,7 +57,6 @@ export class ListingComponent implements OnInit, OnDestroy {
 
     this.subscription.add(
       this.store.select(selectPrincipalAdherentList).subscribe((listOfAdherent) => {
-        console.log(listOfAdherent)
         this.adherentList = listOfAdherent
       })
     )

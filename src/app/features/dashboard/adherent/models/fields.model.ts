@@ -14,7 +14,7 @@ export interface Product {
     r_statut: number
 }
 
-export interface pieceType {
+export interface ParameterType {
     r_i: number
     r_libelle: string
     r_type_parametre: string

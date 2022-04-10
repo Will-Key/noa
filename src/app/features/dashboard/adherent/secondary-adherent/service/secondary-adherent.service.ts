@@ -14,6 +14,7 @@ export class SecondaryAdherentService {
   constructor(private http: HttpClient) { }
 
   cudEntitledPerson(payload: Adherent) {
+    console.log(payload)
     return this.http.post<ApiResponse>(this.baseUrl, payload)
   }
 }

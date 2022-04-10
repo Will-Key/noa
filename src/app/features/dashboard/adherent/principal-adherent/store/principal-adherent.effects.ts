@@ -22,7 +22,6 @@ export class PrincipalAdherentEffects {
             ofType(PrincipalAdherentActions.TRY_FETCH_ADHERENT),
             mergeMap(({ request }) => this.listService.fetch(request).pipe(
                 map((response: FetchResponse) => {
-                    console.log(response)
                     return PrincipalAdherentActions.ADHERENT_FETCHED({ response })
                 }),
                 catchError((response: PrincipalAdherentApiResponse) => {
@@ -37,9 +36,9 @@ export class PrincipalAdherentEffects {
         this.actions$.pipe(
             ofType(PrincipalAdherentActions.TRY_CREATE_ADHERENT),
             mergeMap(({ payload }) => this.principalAdherentService.create(payload).pipe(
-                tap((response) => effectSuccessHandler(this.store, response.r_message)),
+                tap((response) => effectSuccessHandler(this.store, response.message)),
                 map((response: ApiResponse) => {
-                    manageResponse(response)
+                    manageResponse(this.store, response)
 
                     return PrincipalAdherentActions.ADHERENT_CREATION_SUCCEEDED({ response })
                 }),
@@ -55,9 +54,9 @@ export class PrincipalAdherentEffects {
         this.actions$.pipe(
             ofType(PrincipalAdherentActions.TRY_DELETE_ADHERENT),
             mergeMap(({ payload }) => this.principalAdherentService.create(payload).pipe(
-                tap((response) => effectSuccessHandler(this.store, response.r_message)),
+                tap((response) => effectSuccessHandler(this.store, response.message)),
                 map((response: ApiResponse) => {
-                    manageResponse(response)
+                    manageResponse(this.store, response)
                     PrincipalAdherentActions.TRY_FETCH_ADHERENT({ request: { p_code: 'REQ007', p_arguments: '' } })
                     return PrincipalAdherentActions.ADHERENT_CREATION_SUCCEEDED({ response })
                 }),

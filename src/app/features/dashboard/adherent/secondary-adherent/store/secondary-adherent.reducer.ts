@@ -4,6 +4,7 @@ import * as EntitledPersonActions from "./secondary-adherent.action"
 
 export interface State {
     entitledPersonList: Adherent[] | null
+    entitledPersonSelected: Adherent | null
     principalAdherent: AdherentSubscription[] | []
     principalAdherentSelected: AdherentSubscription | null
     message: string | null,
@@ -12,6 +13,7 @@ export interface State {
 
 const initialState: State = {
     entitledPersonList: null,
+    entitledPersonSelected: null,
     principalAdherent: [],
     principalAdherentSelected: null,
     message: null,
@@ -29,22 +31,39 @@ export const entitledPersonReducer = createFeature({
         on(EntitledPersonActions.FETCH_ADHERENT_SUCCEEDED, (state, { response }) => ({
             ...state,
             loading: false,
-            principalAdherent: response.r_contenu
+            principalAdherent: response.contenu
+        })),
+        on(EntitledPersonActions.FETCH_SUB_ADHERENT_SUCCEEDED, (state, { response }) => ({
+            ...state,
+            loading: false,
+            entitledPersonList: response.contenu
         })),
         on(EntitledPersonActions.FETCH_ADHERENT_FAILED, (state, { response }) => ({
             ...state,
             loading: false,
-            message: response.r_message,
+            message: response.message,
         })),
         on(EntitledPersonActions.SET_ADHERENT, (state, { adherent }) => ({
             ...state,
             loading: false,
             principalAdherentSelected: adherent
         })),
-        on(EntitledPersonActions.GET_ENTITLED_PERSON, (state, { entitledPerson }) => ({
+        on(EntitledPersonActions.SET_ENTITLED_PERSON, (state, { entitledPerson }) => ({
+            ...state,
+            entitledPersonSelected: entitledPerson
+        })),
+        on(EntitledPersonActions.GET_ENTITLED_PERSON, (state, { entitledPersons }) => ({
             ...state,
             loading: false,
-            entitledPersonList: entitledPerson
+            entitledPersonList: entitledPersons
         })),
     )
 })
+
+export const {
+    selectLoading,
+    selectEntitledPersonList,
+    selectEntitledPersonSelected,
+    selectPrincipalAdherent,
+    selectPrincipalAdherentSelected
+} = entitledPersonReducer

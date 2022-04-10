@@ -10,6 +10,7 @@ import * as PrincipalAdherentActions from '../../store/principal-adherent.action
   styleUrls: ['./form.component.scss'],
 })
 export class FormComponent implements OnInit {
+  isEditMode: boolean = false
   constructor(private router: Router, private store: Store) {}
 
   ngOnInit(): void {}
@@ -19,8 +20,11 @@ export class FormComponent implements OnInit {
     this.router.navigate(['/dashboard/adherent/principal']);
   }
 
+  onEditMode(event: boolean) {
+    this.isEditMode = event
+  }
+
   onSubmit(event: AdherentSubscription) {
-    console.log(event)
     this.store.dispatch(PrincipalAdherentActions.TRY_CREATE_ADHERENT({ payload: event }))
   }
 }

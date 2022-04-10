@@ -46,23 +46,27 @@ export function effectSuccessHandler(store: Store, message: string) {
     )
 }
 
-export function manageResponse(response: ApiResponse) {
-    if (response.r_statut != '200') {
-        return SET_ALERT({
-            alert: {
-              type: 'error',
-              message: response.r_message,
-              timeout: SNACKBAR_ERROR_TIMEOUT,
-            },
-        })
+export function manageResponse(store: Store, response: ApiResponse) {
+    if (response.statut != '200') {
+        store.dispatch(
+            SET_ALERT({
+                alert: {
+                    type: 'error',
+                    message: response.message,
+                    timeout: SNACKBAR_SUCCESS_TIMEOUT,
+                },
+            }),
+        )
     }
-    return SET_ALERT({
-        alert: {
-          type: 'success',
-          message: response.r_message,
-          timeout: SNACKBAR_SUCCESS_TIMEOUT,
-        },
-    })
+    store.dispatch(
+        SET_ALERT({
+            alert: {
+                type: 'success',
+                message: response.message,
+                timeout: SNACKBAR_SUCCESS_TIMEOUT,
+            },
+        }),
+    )
 
 }
 

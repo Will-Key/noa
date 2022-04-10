@@ -6,5 +6,5 @@ export interface FetchListPayload {
 }
 
 export interface FetchResponse extends ApiResponse {
-    r_contenu: any
+    contenu: any
 }

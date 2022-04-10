@@ -13,6 +13,7 @@ export class ListService {
   constructor(private http: HttpClient) { }
 
   fetch(request: FetchListPayload) {
+    console.log(request)
     return this.http.post<FetchResponse>(this.baseUrl, request)
   }
 }
